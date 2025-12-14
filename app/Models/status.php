@@ -6,7 +6,7 @@ use Illuminate\Console\View\Components\Task;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class status extends Model
+class Status extends Model
 {
     protected $fillable = [
         'status'

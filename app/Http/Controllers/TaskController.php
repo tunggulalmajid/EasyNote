@@ -1,10 +1,11 @@
+
 <?php
 
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class TaskController extends Controller
 {
     /**
      * Display a listing of the resource.

@@ -28,13 +28,15 @@
             <div>
                 <h4 class="font-semibold text-white mb-3">Connect</h4>
                 <div class="flex items-center gap-4">
-                    <a href="#" class="text-neutral-400 hover:text-white transition">
+                    <a href="https://github.com/tunggulalmajid" target="_blank"
+                        class="text-neutral-400 hover:text-white transition">
                         <i data-lucide="github" class="w-5 h-5"></i>
                     </a>
                     <a href="#" class="text-neutral-400 hover:text-white transition">
                         <i data-lucide="twitter" class="w-5 h-5"></i>
                     </a>
-                    <a href="#" class="text-neutral-400 hover:text-white transition">
+                    <a href="https://instagram.com/t.abdlmajd_" target="_blank"
+                        class="text-neutral-400 hover:text-white transition">
                         <i data-lucide="instagram" class="w-5 h-5"></i>
                     </a>
                 </div>
@@ -44,7 +46,7 @@
         {{-- Bottom --}}
         <div class="border-t border-neutral-800 mt-10 pt-6 text-center">
             <p class="text-neutral-500 text-xs">
-                © {{ date('Y') }} EasyNote — All rights reserved.
+                © {{ date('Y') }} EasyNote — By tunggulalmajid.
             </p>
         </div>
     </div>

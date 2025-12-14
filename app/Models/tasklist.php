@@ -4,8 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class tasklist extends Model
+class Tasklist extends Model
 {
     protected $fillable = [
         'task',
@@ -15,7 +16,16 @@ class tasklist extends Model
         'category_id',
         'status_id'
     ];
-    public function users ():BelongsTo {
+    public function User ():BelongsTo {
         return $this -> belongsTo(User::class);
     }
+
+    public function Status():HasMany{
+        return $this -> hasMany(Status::class);
+    }
+
+    public function Category():HasMany{
+        return $this->hasMany(Category::class);
+    }
+
 }

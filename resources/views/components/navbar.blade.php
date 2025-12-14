@@ -1,5 +1,5 @@
 <header class="sticky top-0 z-40 bg-neutral-900/90 backdrop-blur border-b border-neutral-800">
-    <nav class="max-w-6xl mx-auto flex items-center justify-between px-4 py-5">
+    <nav class="max-w-6xl mx-auto flex items-center justify-between px-4 py-8">
         {{-- Brand --}}
         <a href="#home" class="flex items-center gap-x-2 text-xl font-semibold focus:outline-hidden focus:opacity-80">
             <span class="inline-flex items-center gap-x-2">
@@ -21,13 +21,22 @@
                 <a href="#features" class="text-white hover:text-neutral-300 focus:outline-hidden">
                     Features
                 </a>
+                @auth
+                    <a href="{{ route('login') }}"
+                        class="py-2 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-neutral-700 bg-neutral-800 text-white shadow-sm hover:bg-neutral-700 focus:outline-hidden">
+                        Dashboard
+                    </a>
+                @else
+                    <a href="{{ route('login') }}"
+                        class="py-2 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-neutral-700 bg-neutral-800 text-white shadow-sm hover:bg-neutral-700 focus:outline-hidden">
+                        Get Started
+                    </a>
+                @endauth
+
             </div>
 
             {{-- CTA --}}
-            <a href="{{ route('login') }}"
-                class="py-2 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-neutral-700 bg-neutral-800 text-white shadow-sm hover:bg-neutral-700 focus:outline-hidden">
-                Get Started
-            </a>
+
 
             {{-- Burger (kalau mau nanti di-aktifkan Preline collapse) --}}
             <button type="button"
@@ -53,6 +62,10 @@
             <a href="#home" class="text-white hover:text-neutral-300">Home</a>
             <a href="#about" class="text-white hover:text-neutral-300">About</a>
             <a href="#features" class="text-white hover:text-neutral-300">Features</a>
+            <a href="{{ route('login') }}"
+                class="py-2 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-neutral-700 bg-neutral-800 text-white shadow-sm hover:bg-neutral-700 focus:outline-hidden">
+                Get Started
+            </a>
         </div>
     </div>
 </header>

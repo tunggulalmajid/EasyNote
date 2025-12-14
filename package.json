@@ -21,7 +21,6 @@
     "dependencies": {
         "apexcharts": "^5.3.6",
         "lucide": "^0.556.0",
-        "preline": "^3.2.3",
         "tailwind": "^4.0.0"
     }
 }
