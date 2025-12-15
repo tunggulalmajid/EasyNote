@@ -23,18 +23,9 @@
         <div class="relative" x-data="{ open: false }">
             <button @click="open = !open" @click.outside="open = false"
                 class="flex items-center focus:outline-none gap-2">
-                @php
-                    $path = 'storage/' . Auth::user()->foto_profil;
-                    $fileExists = file_exists(public_path($path));
-                    $avatarSrc =
-                        Auth::user()->foto_profil && $fileExists
-                            ? asset($path)
-                            : 'https://ui-avatars.com/api/?name=' .
-                                urlencode(Auth::user()->name) .
-                                '&background=CFF4E1&color=2E9A62&size=256';
-                @endphp
+
                 <img class="w-9 h-9 rounded-full bg-neutral-200 border border-neutral-200 object-cover"
-                    src="{{ $avatarSrc }}" alt="Avatar">
+                    src="{{ Auth::user()->avatar_url }}" alt="Avatar">
                 <p class="text-sm font-medium text-white">{{ Auth::user()->name }}</p>
             </button>
 

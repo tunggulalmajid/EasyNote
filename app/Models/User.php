@@ -23,7 +23,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'foto_profil'
+        'foto_profil',
+        'google_id', // Tambahkan ini
     ];
 
     /**
@@ -53,12 +54,20 @@ class User extends Authenticatable
         return $this->hasMany(Tasklist::class);
     }
 
-    public function getAvatarUrlAttribute()
-    {
-        if ($this->foto_profil && Storage::disk('public')->exists($this->foto_profil)) {
-            return Storage::url($this->foto_profil);
-        }
-
-        return 'https://ui-avatars.com/api/?name=' . urlencode($this->name) . '&background=CFF4E1&color=2E9A62&size=128';
+    // Accessor Pintar (Hybrid)
+public function getAvatarUrlAttribute()
+{
+    // 1. Cek apakah foto adalah link dari Google (http/https)
+    if ($this->foto_profil && str_starts_with($this->foto_profil, 'http')) {
+        return $this->foto_profil;
     }
+
+    // 2. Cek apakah foto ada di storage lokal (hasil upload manual)
+    if ($this->foto_profil && Storage::disk('public')->exists($this->foto_profil)) {
+        return Storage::url($this->foto_profil);
+    }
+
+    // 3. Fallback ke UI Avatars jika tidak ada foto
+    return 'https://ui-avatars.com/api/?name=' . urlencode($this->name) . '&background=CFF4E1&color=2E9A62&size=128';
+}
 }
