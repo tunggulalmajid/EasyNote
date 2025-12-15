@@ -4,6 +4,9 @@ use App\Http\Controllers\DashboardControler;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\SocialiteController;
+use App\Http\Controllers\KegiatanController;
+use App\Models\catatan;
+use App\Models\Tasklist;
 
 Route::get('/', function () {
     return view('Onboarding');
@@ -18,6 +21,10 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile/edit', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile/destroy', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::resource('kegiatan', KegiatanController::class);
+    Route::resource('task', Tasklist::class);
+    Route::resource('catatan', catatan::class);
 });
 
 

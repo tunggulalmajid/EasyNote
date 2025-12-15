@@ -8,11 +8,18 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Status extends Model
 {
+    protected $table = 'status';
     protected $fillable = [
         'status'
     ];
 
-    public function tasklist():BelongsTo{
-        return $this -> belongsTo(tasklist::class);
+    public function tasklists(){
+        return $this -> hasMany(tasklist::class);
     }
+
+    public function kegiatans(){
+        return $this -> hasMany(Kegiatan::class);
+    }
+
+
 }

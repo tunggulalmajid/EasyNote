@@ -23,11 +23,16 @@
     {{-- Menu Items --}}
     <nav class="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
         @php
-            $navItems = [['name' => 'Dashboard', 'url' => 'dashboard', 'icon' => 'layout-dashboard']];
+            $navItems = [
+                ['name' => 'Dashboard', 'url' => 'dashboard', 'href' => 'dashboard', 'icon' => 'layout-dashboard'],
+                ['name' => 'Kegiatan', 'url' => 'kegiatan', 'href' => 'kegiatan.index', 'icon' => 'activity'],
+                ['name' => 'Tugas', 'url' => 'task', 'href' => 'task.index', 'icon' => 'list-checks'],
+                ['name' => 'Catatan', 'url' => 'catatan', 'href' => 'catatan.index', 'icon' => 'notepad-text'],
+            ];
         @endphp
 
         @foreach ($navItems as $item)
-            <a href="{{ route($item['url']) }}"
+            <a href="{{ route($item['href']) }}"
                 class="flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-lg transition-colors group
                {{ request()->is($item['url'] . '*')
                    ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-900/20'

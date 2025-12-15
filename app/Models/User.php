@@ -50,8 +50,20 @@ class User extends Authenticatable
         ];
     }
 
-    public function Tasklist():HasMany{
+    public function tasklists():HasMany{
         return $this->hasMany(Tasklist::class);
+    }
+
+    public function categories():HasMany{
+        return $this->hasMany(category::class);
+    }
+
+    public function catatans():HasMany{
+        return $this->hasMany(catatan::class);
+    }
+
+    public function kegiatans():HasMany{
+        return $this->hasMany(Kegiatan::class);
     }
 
     // Accessor Pintar (Hybrid)

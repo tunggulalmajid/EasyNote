@@ -11,16 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::disableForeignKeyConstraints();
-
-        Schema::create('category', function (Blueprint $table) {
+        Schema::create('catatan', function (Blueprint $table) {
             $table->id();
-            $table->string('category');
+            $table->string('judul');
+            $table->text('konten');
             $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
         });
-
-        Schema::enableForeignKeyConstraints();
     }
 
     /**
@@ -28,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('catatans');
     }
 };

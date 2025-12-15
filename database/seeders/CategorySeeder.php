@@ -16,17 +16,20 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('categories')->insert([
-            'category' => 'Tugas Kuliah'
-        ]);
+        category::create([
+            'category' => 'Tugas Metopen',
+            'user_id'=>1,
+        ],
+        [
+            'category' => 'Tugas PWEB',
+            'user_id'=>1,
+        ],
+        [
+            'category' => 'Tugas PBM',
+            'user_id'=>1,
+        ]
 
-        DB::table('categories')->insert([
-            'category' => 'Tugas Umum'
-        ]);
-
-        DB::table('categories')->insert([
-            'category' => 'Jobdesk Kerja'
-        ]);
+    );
     }
 }
 

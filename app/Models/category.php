@@ -7,12 +7,18 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Category extends Model
 {
+protected $table = 'category';
   protected $fillable = [
-    'category'
+    'category',
+    'user_id'
   ];
 
-  public function tasklist ():BelongsTo
+  public function tasklists ()
   {
-    return $this -> belongsTo(tasklist::class);
+    return $this -> hasMany(tasklist::class);
+  }
+
+  public function user(){
+    return $this->belongsTo(User::class);
   }
 }

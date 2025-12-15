@@ -15,16 +15,15 @@ class StatusSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('status')->insert([
-            'status' => 'Belum Dikerjakan'
-        ]);
-
-        DB::table('status')->insert([
-            'status' => 'Sedang Dikerjakan'
-        ]);
-
-        DB::table('status')->insert([
-            'status' => 'Selesai Dikerjakan'
-        ]);
+        status::create([
+            'status' => 'Belum'
+        ],
+        [
+            'status' => 'Proses'
+        ],
+        [
+            'status' => 'Selesai'
+        ],
+    );
     }
 }
