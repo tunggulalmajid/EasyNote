@@ -1,6 +1,6 @@
 @props(['title'])
 
-<header class="sticky top-0 z-30 flex items-center justify-between h-16 px-6 bg-neutral-900 backdrop-blur-md border-b ">
+<header class="sticky top-0 z-30 flex items-center justify-between h-16 px-6 bg-neutral-900 backdrop-blur-md border-b border-neutral-800 ">
 
     {{-- Left: Toggle & Title --}}
     <div class="flex items-center gap-4">

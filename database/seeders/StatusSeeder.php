@@ -15,15 +15,12 @@ class StatusSeeder extends Seeder
      */
     public function run(): void
     {
-        status::create([
-            'status' => 'Belum'
-        ],
-        [
-            'status' => 'Proses'
-        ],
-        [
-            'status' => 'Selesai'
-        ],
-    );
+       $data = ['Belum', 'Proses', 'Selesai'];
+
+        foreach ($data as $status) {
+            Status::create([
+                'status' => $status
+            ]);
+        }
     }
 }

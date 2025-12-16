@@ -1,12 +1,15 @@
 import "./bootstrap";
-
 import Alpine from "alpinejs";
+import { createIcons, icons } from "lucide";
 
 window.Alpine = Alpine;
 
 Alpine.start();
-import { createIcons, icons } from "lucide";
 
-document.addEventListener("DOMContentLoaded", () => {
-    createIcons({ icons });
-});
+window.lucide = {
+    createIcons,
+    icons,
+};
+
+// 3. Jalankan createIcons untuk icon statis (sidebar/header)
+createIcons({ icons });

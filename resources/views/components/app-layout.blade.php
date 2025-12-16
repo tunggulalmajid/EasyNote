@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $title ?? 'EasyNote Dashboard' }}</title>
+    <title>{{ 'EasyNote' }}</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/png">
 
 
     {{-- Memuat Asset via Vite (NPM) --}}
@@ -30,7 +31,7 @@
             <x-header :title="$title ?? 'Dashboard'" />
 
             {{-- Content --}}
-            <main class="flex-1 p-4 sm:p-6 overflow-y-auto">
+            <main class="flex-1 p-4 sm:p-6 overflow-y-auto bg-neutral-900">
                 {{ $slot }}
             </main>
 

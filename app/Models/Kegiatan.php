@@ -12,7 +12,8 @@ class Kegiatan extends Model
         'tanggal',
         'waktu',
         'deskripsi',
-        'user_id'
+        'user_id',
+        'status_id'
     ];
 
     public function user(){

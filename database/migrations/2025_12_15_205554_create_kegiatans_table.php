@@ -18,7 +18,7 @@ return new class extends Migration
             $table->time('waktu');
             $table->text('deskripsi')->nullable();
             $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('status')->constrained('status');
+            $table->foreignId('status_id')->constrained('status');
             $table->timestamps();
         });
     }
