@@ -16,19 +16,22 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        category::create([
-            'category' => 'Tugas Metopen',
-            'user_id'=>1,
-        ],
+    //     category::create([
+    //         'category' => 'Tugas Metopen',
+    //         'user_id'=>1,
+    //     ],
+    // );
+        category::create(
         [
             'category' => 'Tugas PWEB',
             'user_id'=>1,
         ],
+    );
+        category::create(
         [
             'category' => 'Tugas PBM',
             'user_id'=>1,
-        ]
-
+        ],
     );
     }
 }

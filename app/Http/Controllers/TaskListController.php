@@ -68,11 +68,23 @@ class TaskListController extends Controller
                 ],
                 // Warna indikator status (dot disamping kiri)
                 'colors' => match($item->status_id) {
-                    1 => ['dot' => 'bg-red-500', 'border' => 'border-l-red-500'],
-                    2 => ['dot' => 'bg-amber-500', 'border' => 'border-l-amber-500'],
-                    3 => ['dot' => 'bg-emerald-500', 'border' => 'border-l-emerald-500'],
-                    default => ['dot' => 'bg-neutral-400', 'border' => 'border-l-neutral-400'],
-                }
+            1 => [ // Merah (Belum Selesai)
+                'sidebar' => 'bg-red-500',
+                'badge'   => 'text-red-400 bg-red-900/20 border-red-700/50'
+            ],
+            2 => [ // Kuning/Amber (Proses)
+                'sidebar' => 'bg-amber-500',
+                'badge'   => 'text-amber-400 bg-amber-900/20 border-amber-700/50'
+            ],
+            3 => [ // Hijau (Selesai)
+                'sidebar' => 'bg-emerald-500',
+                'badge'   => 'text-emerald-400 bg-emerald-900/20 border-emerald-700/50'
+            ],
+            default => [ // Default Abu-abu
+                'sidebar' => 'bg-neutral-500',
+                'badge'   => 'text-neutral-400 bg-neutral-900/20 border-neutral-700/50'
+            ]
+        }
             ];
         });
 

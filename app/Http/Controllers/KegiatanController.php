@@ -33,7 +33,7 @@ class KegiatanController extends Controller
                 $query->where('status_id', $request->status_id);
             }
 
-            $kegiatan = $query->paginate(10);
+            $kegiatan = $query->paginate(10)->withQueryString();
 
             // Transformasi Data (Format Tanggal & Warna diatur di sini)
             $kegiatan->getCollection()->transform(function ($item) {
@@ -102,13 +102,6 @@ class KegiatanController extends Controller
         return redirect()->route('kegiatan.index')->with('success', 'Kegiatan Berhasil ditambahkan');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-
-    }
 
     /**
      * Show the form for editing the specified resource.

@@ -13,10 +13,10 @@ protected $table = 'category';
     'user_id'
   ];
 
-  public function tasklists ()
-  {
-    return $this -> hasMany(tasklist::class);
-  }
+  public function tasks()
+    {
+        return $this->hasMany(Tasklist::class);
+    }
 
   public function user(){
     return $this->belongsTo(User::class);

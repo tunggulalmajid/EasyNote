@@ -4,6 +4,7 @@ use App\Http\Controllers\DashboardControler;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\SocialiteController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\KegiatanController;
 use App\Http\Controllers\TaskListController;
 use App\Models\catatan;
@@ -23,8 +24,9 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::patch('/profile/edit', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile/destroy', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::resource('kegiatan', KegiatanController::class);
+    Route::resource('kegiatan', KegiatanController::class)->except('show');
     Route::resource('task', TaskListController::class);
+    Route::resource('category', CategoryController::class)->except('show');
     Route::resource('catatan', catatan::class);
 });
 
