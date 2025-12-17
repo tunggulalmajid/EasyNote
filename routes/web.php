@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\SocialiteController;
 use App\Http\Controllers\KegiatanController;
+use App\Http\Controllers\TaskListController;
 use App\Models\catatan;
 use App\Models\Tasklist;
 
@@ -23,7 +24,7 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::delete('/profile/destroy', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::resource('kegiatan', KegiatanController::class);
-    Route::resource('task', Tasklist::class);
+    Route::resource('task', TaskListController::class);
     Route::resource('catatan', catatan::class);
 });
 
