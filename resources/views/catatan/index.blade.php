@@ -1,13 +1,14 @@
 <x-app-layout>
     <x-slot:title>Catatan Saya</x-slot:title>
 
-    <div class="max-w-5xl mx-auto py-8 px-4 sm:px-6 lg:px-8 space-y-6" x-data="catatanApp()" x-init="fetchData()">
+    {{-- FIX 1: Tambahkan 'w-full max-w-full overflow-hidden' pada container utama --}}
+    <div class="max-w-5xl mx-auto py-6 px-4 sm:px-6 lg:px-8 space-y-6 w-full max-w-full overflow-hidden"
+        x-data="catatanApp()" x-init="fetchData()">
 
         {{-- === HEADER === --}}
         <div
-            class="flex flex-col md:flex-row justify-between items-center gap-4 bg-neutral-800 p-4 rounded-xl shadow-lg border border-neutral-700">
-            <h2 class="text-xl font-bold text-white flex items-center gap-2">
-                {{-- Icon Book/Note --}}
+            class="flex flex-col md:flex-row justify-between items-center gap-4 bg-neutral-800 p-4 sm:p-5 rounded-xl shadow-lg border border-neutral-700 w-full">
+            <h2 class="text-xl font-bold text-white flex items-center gap-2 w-full md:w-auto">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                     class="w-6 h-6 text-indigo-400">
@@ -16,20 +17,16 @@
                 Catatan Saya
             </h2>
 
-            <div class="flex items-center gap-3">
-                {{-- Tombol Tambah --}}
-                <a href="{{ route('catatan.create') }}"
-                    class="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-sm font-medium transition shadow-lg shadow-indigo-900/20">
-                    {{-- Icon Plus --}}
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" class="w-4 h-4">
-                        <path d="M5 12h14" />
-                        <path d="M12 5v14" />
-                    </svg>
-                    <span>Buat Catatan</span>
-                </a>
-            </div>
+            <a href="{{ route('catatan.create') }}"
+                class="w-full md:w-auto inline-flex justify-center items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2.5 rounded-lg text-sm font-medium transition shadow-lg shadow-indigo-900/20 active:scale-95">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="w-4 h-4">
+                    <path d="M5 12h14" />
+                    <path d="M12 5v14" />
+                </svg>
+                <span>Buat Catatan</span>
+            </a>
         </div>
 
         {{-- === LOADING STATE === --}}
@@ -47,17 +44,18 @@
         </div>
 
         {{-- === LIST DATA === --}}
-        <div class="space-y-4" x-show="!isLoading" style="display: none;">
+        <div class="space-y-4 w-full" x-show="!isLoading" style="display: none;">
             <template x-for="item in data" :key="item.id">
 
-                {{-- CARD DESIGN (Mirip Kegiatan) --}}
+                {{-- FIX 2: Tambahkan 'w-full max-w-full' pada Card Wrapper --}}
                 <div
-                    class="group bg-neutral-800 rounded-xl shadow-lg border border-neutral-700 border-l-[6px] border-l-indigo-500 p-5 flex flex-col sm:flex-row items-start sm:items-center gap-5 hover:bg-neutral-750 transition-all duration-300 relative overflow-hidden">
+                    class="group bg-neutral-800 rounded-xl shadow-lg border border-neutral-700 border-l-[6px] border-l-indigo-500 p-5 flex flex-col sm:flex-row items-start gap-4 sm:gap-6 hover:bg-neutral-750 transition-all duration-300 relative overflow-hidden w-full max-w-full">
 
-                    {{-- Bagian Kiri: Tanggal & Icon --}}
-                    <div class="flex items-center gap-4 min-w-[140px]">
+                    {{-- Bagian 1: Tanggal --}}
+                    <div
+                        class="flex flex-row sm:flex-col items-center sm:items-start gap-3 w-full sm:w-auto sm:min-w-[140px] shrink-0">
                         <div
-                            class="w-10 h-10 rounded-full bg-indigo-900/50 flex items-center justify-center border border-indigo-500/30 text-indigo-400">
+                            class="w-10 h-10 rounded-full bg-indigo-900/50 flex items-center justify-center border border-indigo-500/30 text-indigo-400 shrink-0">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round">
@@ -71,22 +69,25 @@
                         </div>
                     </div>
 
-                    {{-- Bagian Tengah: Judul & Cuplikan --}}
-                    <div class="flex-1 w-full border-l border-neutral-700 pl-5">
+                    {{-- Bagian 2: Judul & Cuplikan --}}
+                    {{-- FIX 3: Gunakan 'min-w-0', 'flex-1', dan 'w-full' agar Flex item mau mengecil --}}
+                    <div
+                        class="flex-1 w-full min-w-0 pt-4 sm:pt-0 sm:pl-5 border-t sm:border-t-0 sm:border-l border-neutral-700">
+
+                        {{-- FIX 4: Gunakan 'break-all' agar teks dsadsadsa... dipotong paksa --}}
                         <a :href="item.urls.show"
-                            class="text-lg font-bold text-white group-hover:text-indigo-400 transition-colors line-clamp-1 cursor-pointer"
+                            class="text-lg font-bold text-white group-hover:text-indigo-400 transition-colors line-clamp-1 cursor-pointer block mb-2 break-all"
                             x-text="item.judul"></a>
 
-                        {{-- Menggunakan konten_cuplikan dari controller --}}
-                        <div class="text-sm text-neutral-400 mt-2 line-clamp-2 leading-relaxed prose prose-invert prose-sm max-w-none"
-                            x-html="item.konten_cuplikan"></div>
+                        {{-- FIX 5: Gunakan 'break-all' pada konten juga --}}
+                        <div class="text-sm text-neutral-400 leading-relaxed prose prose-invert prose-sm max-w-none line-clamp-3 sm:line-clamp-2 overflow-hidden break-all"
+                            x-html="item.konten_cuplikan">
+                        </div>
                     </div>
 
-                    {{-- Bagian Kanan: Aksi --}}
+                    {{-- Bagian 3: Aksi --}}
                     <div
-                        class="flex items-center justify-between sm:justify-end w-full sm:w-auto gap-2 mt-3 sm:mt-0 pt-3 sm:pt-0 border-t sm:border-t-0 border-neutral-700">
-
-                        {{-- Show --}}
+                        class="flex items-center justify-between sm:justify-end w-full sm:w-auto gap-2 mt-2 sm:mt-0 pt-3 sm:pt-0 border-t sm:border-t-0 border-neutral-700 shrink-0">
                         <a :href="item.urls.show"
                             class="p-2 text-neutral-400 hover:text-teal-400 hover:bg-teal-900/20 rounded-lg transition"
                             title="Baca">
@@ -97,8 +98,6 @@
                                 <circle cx="12" cy="12" r="3" />
                             </svg>
                         </a>
-
-                        {{-- Edit --}}
                         <a :href="item.urls.edit"
                             class="p-2 text-neutral-400 hover:text-indigo-400 hover:bg-indigo-900/20 rounded-lg transition"
                             title="Edit">
@@ -109,8 +108,6 @@
                                 <path d="m15 5 4 4" />
                             </svg>
                         </a>
-
-                        {{-- Delete --}}
                         <button @click="deleteItem(item.urls.delete)"
                             class="p-2 text-neutral-400 hover:text-red-400 hover:bg-red-900/20 rounded-lg transition"
                             title="Hapus">
@@ -120,8 +117,6 @@
                                 <path d="M3 6h18" />
                                 <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
                                 <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
-                                <line x1="10" x2="10" y1="11" y2="17" />
-                                <line x1="14" x2="14" y1="11" y2="17" />
                             </svg>
                         </button>
                     </div>
@@ -158,7 +153,6 @@
         </div>
     </div>
 
-    {{-- SCRIPT --}}
     <script>
         function catatanApp() {
             return {
@@ -170,7 +164,6 @@
                 async fetchData(url = "{{ route('catatan.index') }}") {
                     this.isLoading = true;
                     const params = new URL(url);
-                    // Parameter wajib untuk bypass cache back button & deteksi AJAX
                     params.searchParams.set('fetch_mode', '1');
 
                     try {

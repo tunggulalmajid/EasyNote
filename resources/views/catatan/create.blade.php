@@ -1,14 +1,16 @@
 <x-app-layout>
     <x-slot:title>Buat Catatan</x-slot:title>
 
-    <div class="max-w-4xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
-        <div class="bg-neutral-800 border border-neutral-700 rounded-xl shadow-lg p-6 sm:p-8">
+    {{-- Container: w-full, max-w-full, overflow-hidden agar tidak scroll horizontal --}}
+    <div class="max-w-4xl mx-auto py-6 px-4 sm:px-6 lg:px-8 sm:py-10 w-full max-w-full overflow-hidden">
+
+        <div class="bg-neutral-800 border border-neutral-700 rounded-xl shadow-lg p-5 sm:p-8">
 
             <div class="mb-6">
-                <h2 class="text-2xl font-bold text-white flex items-center gap-2">
+                <h2 class="text-xl sm:text-2xl font-bold text-white flex items-center gap-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="text-indigo-400">
+                        class="text-indigo-400 w-6 h-6 sm:w-7 sm:h-7">
                         <path d="M12 20h9" />
                         <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
                     </svg>
@@ -17,39 +19,32 @@
                 <p class="text-neutral-400 text-sm mt-1">Tuangkan ide Anda ke dalam tulisan.</p>
             </div>
 
-            <form action="{{ route('catatan.store') }}" method="POST" class="space-y-6">
+            <form action="{{ route('catatan.store') }}" method="POST" class="space-y-5 sm:space-y-6">
                 @csrf
 
-                {{-- Judul --}}
                 <div>
                     <label for="judul" class="block text-sm font-medium text-neutral-300 mb-1">Judul Catatan</label>
                     <input type="text" name="judul" id="judul" value="{{ old('judul') }}" required
-                        class="w-full rounded-lg bg-neutral-900 border-neutral-700 text-white placeholder-neutral-500 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm p-3 text-lg font-semibold"
+                        class="w-full rounded-lg bg-neutral-900 border-neutral-700 text-white placeholder-neutral-500 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm p-3 text-base sm:text-lg font-semibold transition"
                         placeholder="Contoh: Ide Bisnis 2025...">
-                    @error('judul')
-                        <span class="text-red-400 text-xs mt-1">{{ $message }}</span>
-                    @enderror
                 </div>
 
-                {{-- Konten Editor (CKEditor) --}}
                 <div>
                     <label for="konten" class="block text-sm font-medium text-neutral-300 mb-1">Isi Catatan</label>
-                    <div class="prose-editor-wrapper">
+                    {{-- Wrapper Editor: max-w-full dan break-all --}}
+                    <div class="text-black prose-editor-wrapper w-full max-w-full overflow-hidden rounded-lg">
                         <textarea name="konten" id="editor">{{ old('konten') }}</textarea>
                     </div>
-                    @error('konten')
-                        <span class="text-red-400 text-xs mt-1">{{ $message }}</span>
-                    @enderror
                 </div>
 
-                {{-- Buttons --}}
-                <div class="flex items-center justify-end gap-3 pt-4 border-t border-neutral-700">
+                <div
+                    class="flex flex-col-reverse sm:flex-row items-center justify-end gap-3 pt-5 border-t border-neutral-700">
                     <a href="{{ route('catatan.index') }}"
-                        class="px-4 py-2 text-sm font-medium text-neutral-300 bg-neutral-700/50 border border-neutral-600 rounded-lg hover:bg-neutral-700 transition">
+                        class="w-full sm:w-auto text-center px-4 py-2.5 text-sm font-medium text-neutral-300 bg-neutral-700/50 border border-neutral-600 rounded-lg hover:bg-neutral-700 transition active:scale-95">
                         Batal
                     </a>
                     <button type="submit"
-                        class="px-6 py-2 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-500 shadow-lg shadow-indigo-900/20 transition flex items-center gap-2">
+                        class="w-full sm:w-auto justify-center px-6 py-2.5 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-500 shadow-lg shadow-indigo-900/20 transition flex items-center gap-2 active:scale-95">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                             stroke-linejoin="round">
@@ -64,39 +59,70 @@
         </div>
     </div>
 
-    {{-- Load CKEditor CDN --}}
     @push('scripts')
         <script src="https://cdn.ckeditor.com/ckeditor5/40.2.0/classic/ckeditor.js"></script>
+
         <script>
-            ClassicEditor
-                .create(document.querySelector('#editor'), {
-                    toolbar: ['heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote',
-                        'undo', 'redo'
-                    ]
-                })
-                .catch(error => {
-                    console.error(error);
-                });
+            document.addEventListener("DOMContentLoaded", function() {
+                ClassicEditor
+                    .create(document.querySelector('#editor'), {
+                        toolbar: {
+                            items: [
+                                'heading', '|',
+                                'bold', 'italic', 'link', '|',
+                                'bulletedList', 'numberedList', '|',
+                                'outdent', 'indent', '|',
+                                'blockQuote', 'undo', 'redo'
+                            ],
+                            shouldNotGroupWhenFull: true
+                        },
+                        placeholder: 'Tulis catatan Anda di sini...'
+                    })
+                    .then(editor => {
+                        editor.keystrokes.set('Tab', (data, cancel) => {
+                            const command = editor.commands.get('indent');
+                            if (command.isEnabled) {
+                                command.execute();
+                                cancel();
+                            }
+                        });
+                        editor.keystrokes.set('Shift+Tab', (data, cancel) => {
+                            const command = editor.commands.get('outdent');
+                            if (command.isEnabled) {
+                                command.execute();
+                                cancel();
+                            }
+                        });
+                    })
+                    .catch(error => {
+                        console.error('CKEditor Gagal Load:', error);
+                    });
+            });
         </script>
     @endpush
 
-    {{-- Custom CSS untuk Dark Mode CKEditor --}}
     <style>
-        /* Mengubah warna dasar CKEditor agar cocok dengan Dark Mode */
         .ck-editor__editable_inline {
             min-height: 300px;
+            max-height: 600px;
             background-color: #171717 !important;
-            /* neutral-900 */
             color: #e5e5e5 !important;
-            /* neutral-200 */
             border-color: #404040 !important;
-            /* neutral-700 */
+            padding: 0 15px !important;
+
+            /* FIX RESPONSIVE: Memaksa teks panjang turun ke bawah */
+            white-space: pre-wrap !important;
+            overflow-wrap: break-word !important;
+            word-wrap: break-word !important;
+            word-break: break-all !important;
+            /* INI KUNCINYA */
+            max-width: 100% !important;
         }
 
         .ck.ck-toolbar {
             background-color: #262626 !important;
-            /* neutral-800 */
             border-color: #404040 !important;
+            flex-wrap: wrap !important;
         }
 
         .ck.ck-button {
@@ -109,18 +135,38 @@
             color: #fff !important;
         }
 
-        /* Style untuk konten di dalam editor */
+        .ck-editor__editable ::selection {
+            background-color: rgba(99, 102, 241, 0.5) !important;
+            color: #ffffff !important;
+        }
+
+        .ck-content ul {
+            list-style-type: disc !important;
+            padding-left: 1.5rem !important;
+            margin-bottom: 1rem;
+        }
+
+        .ck-content ol {
+            list-style-type: decimal !important;
+            padding-left: 1.5rem !important;
+            margin-bottom: 1rem;
+        }
+
         .ck-content blockquote {
-            border-left: 5px solid #6366f1;
-            /* indigo-500 */
+            border-left: 4px solid #6366f1;
             padding-left: 1em;
             color: #a3a3a3;
             font-style: italic;
+            margin-left: 0;
         }
 
         .ck-content a {
             color: #818cf8;
             text-decoration: underline;
+        }
+
+        .ck.ck-editor__editable>.ck-placeholder::before {
+            color: #737373 !important;
         }
     </style>
 </x-app-layout>

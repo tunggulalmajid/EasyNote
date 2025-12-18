@@ -155,7 +155,7 @@ public function show($id)
 public function edit($id)
 {
     $task = Tasklist::where('user_id', Auth::id())->findOrFail($id);
-    $categories = Category::all();
+    $categories = Category::where('user_id', Auth::id())->get();
     $statuses = Status::all();
 
     return view('tasklist.edit', compact('task', 'categories', 'statuses'));

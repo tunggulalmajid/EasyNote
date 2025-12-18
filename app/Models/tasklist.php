@@ -14,7 +14,8 @@ class Tasklist extends Model
         'deadline',
         'user_id',
         'category_id',
-        'status_id'
+        'status_id',
+        'deskripsi'
     ];
     public function user ():BelongsTo {
         return $this -> belongsTo(User::class);
