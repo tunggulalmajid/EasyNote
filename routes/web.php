@@ -8,6 +8,8 @@ use App\Http\Controllers\CatatanController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\KegiatanController;
 use App\Http\Controllers\TaskListController;
+use App\Http\Controllers\TelegramNotifyController;
+use App\Http\Controllers\TelegramWebhookController;
 use App\Models\catatan;
 use App\Models\Tasklist;
 
@@ -29,10 +31,16 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::resource('task', TaskListController::class);
     Route::resource('category', CategoryController::class)->except('show');
     Route::resource('catatan', CatatanController::class);
+
+    Route::get('/telegram', [TelegramNotifyController::class, 'index'])->name('telegram.index');
+    Route::post('/telegram', [TelegramNotifyController::class, 'update'])->name('telegram.update');
+    Route::delete('/telegram', [TelegramNotifyController::class, 'destroy'])->name('telegram.destroy');
+
 });
 
 
 
+Route::post('/telegram/webhook', [TelegramWebhookController::class  , 'handle']);
 Route::middleware('guest')->group(function () {
     Route::get('/auth/google', [SocialiteController::class, 'redirect'])->name('auth.google');
     Route::get('/auth/google/callback', [SocialiteController::class, 'callback']);

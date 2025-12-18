@@ -47,7 +47,7 @@
         @php
             $navSub = [
                 ['name' => 'Kelola Kategori', 'url' => 'category', 'href' => 'category.index', 'icon' => 'list'],
-                ['name' => 'Connect Telegram', 'url' => 'category', 'href' => 'category.index', 'icon' => 'bell-ring'],
+                ['name' => 'Notify Telegram', 'url' => 'telegram', 'href' => 'telegram.index', 'icon' => 'bell-ring'],
             ];
         @endphp
         <div class="pt-4 mt-4 border-t border-neutral-800">

@@ -25,6 +25,7 @@ class User extends Authenticatable
         'password',
         'foto_profil',
         'google_id', // Tambahkan ini
+        'telegram_chat_id', // Tambahkan ini
     ];
 
     /**
