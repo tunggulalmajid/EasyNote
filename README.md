@@ -6,7 +6,7 @@
 
 ![EasyNote Preview](https://github.com/tunggulalmajid/EasyNote/blob/main/Screenshot%202025-12-19%20043519.png)
 
-![EasyNote Preview](https://github.com/tunggulalmajid/EasyNote/blob/main/Screenshot%202025-12-19%20043529.png)
+![EasyNote Preview](https://github.com/tunggulalmajid/EasyNote/blob/main/Screenshot%202025-12-19%20044016.png)
 
 
 ## 🚀 Fitur Utama
