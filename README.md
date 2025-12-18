@@ -2,8 +2,12 @@
 
 **EasyNote** adalah aplikasi manajemen produktivitas berbasis web yang dibangun dengan **Laravel 12**. Aplikasi ini membantu Anda mencatat ide, mengatur jadwal kegiatan, dan memantau tugas harian dengan efisien, dilengkapi fitur notifikasi otomatis ke **Telegram** setiap pagi.
 
-![EasyNote Preview](link_to_screenshot_here.png)
-*(Ganti link di atas dengan screenshot aplikasi Anda)*
+![EasyNote Preview](https://github.com/tunggulalmajid/EasyNote/blob/main/Screenshot%202025-12-19%20043502.png)
+
+![EasyNote Preview](https://github.com/tunggulalmajid/EasyNote/blob/main/Screenshot%202025-12-19%20043519.png)
+
+![EasyNote Preview](https://github.com/tunggulalmajid/EasyNote/blob/main/Screenshot%202025-12-19%20043529.png)
+
 
 ## 🚀 Fitur Utama
 
