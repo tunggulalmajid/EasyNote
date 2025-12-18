@@ -1,59 +1,125 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# EasyNote 📝
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+**EasyNote** adalah aplikasi manajemen produktivitas berbasis web yang dibangun dengan **Laravel 12**. Aplikasi ini membantu Anda mencatat ide, mengatur jadwal kegiatan, dan memantau tugas harian dengan efisien, dilengkapi fitur notifikasi otomatis ke **Telegram** setiap pagi.
 
-## About Laravel
+![EasyNote Preview](https://github.com/tunggulalmajid/EasyNote/blob/main/Screenshot%202025-12-19%20043502.png)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+![EasyNote Preview](https://github.com/tunggulalmajid/EasyNote/blob/main/Screenshot%202025-12-19%20043519.png)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+![EasyNote Preview](https://github.com/tunggulalmajid/EasyNote/blob/main/Screenshot%202025-12-19%20044016.png)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
+## 🚀 Fitur Utama
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+### 1. 📒 Manajemen Catatan (Notes)
+- **Rich Text Editor:** Menggunakan **CKEditor 5 (Super Build)** dengan dukungan *formatting* lengkap.
+- **Responsive:** Editor menyesuaikan layar HP dan Desktop tanpa *scroll* horizontal.
+- **Dark Mode Native:** Antarmuka gelap yang nyaman di mata.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 2. 📅 Jadwal Kegiatan (Schedule)
+- Mengatur agenda harian berdasarkan tanggal dan waktu.
+- Filter otomatis untuk melihat kegiatan hari ini.
+- Visualisasi waktu dengan indikator warna.
 
-## Laravel Sponsors
+### 3. ✅ Daftar Tugas (Task List)
+- Manajemen tugas dengan **Deadline**.
+- **Indikator Urgensi:** Icon warna berubah otomatis (🔴 Terlewat, 🟡 Hari ini/Besok, 🟢 Masih Lama).
+- Pengelompokan berdasarkan kategori.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### 4. 🤖 Integrasi Telegram Bot (Fitur Unggulan)
+- **Webhook Integrasi:** Bot otomatis membalas dan menyimpan Chat ID pengguna saat user mengetik `/start`.
+- **Morning Briefing:** Server mengirim notifikasi otomatis setiap jam **07:00 WIB** berisi:
+  - Jadwal kegiatan hari ini.
+  - Daftar tugas yang *deadline*-nya sudah dekat atau terlewat.
 
-### Premium Partners
+## 🛠️ Teknologi yang Digunakan
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+- **Backend:** Laravel 12 ⚡
+- **Frontend:** Blade Templates, Tailwind CSS
+- **Interaktivitas:** Alpine.js
+- **Database:** MySQL
+- **Editor:** CKEditor 5
+- **Icons:** Lucide Icons
+- **API:** Telegram Bot API
 
-## Contributing
+## 📋 Persyaratan Sistem
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Pastikan server Anda memenuhi syarat untuk Laravel 12:
+- **PHP** >= 8.2
+- **Composer**
+- **Node.js** & **NPM**
 
-## Code of Conduct
+## ⚙️ Cara Instalasi (Localhost)
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Ikuti langkah ini untuk menjalankan project di komputer Anda:
 
-## Security Vulnerabilities
+1.  **Clone Repository**
+    ```bash
+    git clone [https://github.com/username/easynote.git](https://github.com/username/easynote.git)
+    cd easynote
+    ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+2.  **Install Dependencies**
+    ```bash
+    composer install
+    npm install && npm run build
+    ```
 
-## License
+3.  **Konfigurasi Environment**
+    Salin file `.env.example` menjadi `.env`:
+    ```bash
+    cp .env.example .env
+    ```
+    Atur koneksi database dan timezone di `.env`:
+    ```ini
+    DB_DATABASE=easynote_db
+    DB_USERNAME=root
+    DB_PASSWORD=
+    
+    # Setting Timezone Wajib (Agar Cron Job Akurat)
+    APP_TIMEZONE='Asia/Jakarta'
+    ```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+4.  **Generate Key & Migrate**
+    ```bash
+    php artisan key:generate
+    php artisan migrate
+    ```
+
+5.  **Jalankan Server**
+    ```bash
+    php artisan serve
+    ```
+
+## 🤖 Konfigurasi Telegram Bot
+
+Agar fitur notifikasi berjalan, Anda perlu membuat bot di Telegram:
+
+1.  Chat dengan **@BotFather** di Telegram, buat bot baru, dan dapatkan **API Token**.
+2.  Masukkan token ke file `.env`:
+    ```ini
+    TELEGRAM_BOT_TOKEN=123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew11
+    ```
+3.  **Set Webhook (PENTING):**
+    Agar bot bisa membalas chat secara otomatis, Anda harus mendaftarkan URL project Anda (harus HTTPS / Hosting Publik / Ngrok):
+    
+    Buka browser dan akses:
+    `https://api.telegram.org/bot<TOKEN_ANDA>/setWebhook?url=https://domain-anda.com/telegram/webhook`
+
+## ⏰ Konfigurasi Otomatisasi (Cron Job)
+
+Fitur notifikasi pagi (`notify:morning`) berjalan otomatis menggunakan Laravel Scheduler.
+
+### Jika di Server Hosting (cPanel):
+Tambahkan entri berikut pada menu **Cron Jobs** di cPanel:
+
+* **Schedule:** `* * * * *` (Once Per Minute)
+* **Command:**
+    ```bash
+    cd /path/to/your/project && php artisan schedule:run >> /dev/null 2>&1
+    ```
+
+### Cara Tes Manual:
+Anda bisa memaksa pengiriman notifikasi sekarang juga melalui terminal:
+```bash
+php artisan notify:morning
