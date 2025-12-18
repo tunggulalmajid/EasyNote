@@ -1,6 +1,7 @@
 @props(['title'])
 
-<header class="sticky top-0 z-30 flex items-center justify-between h-16 px-6 bg-neutral-900 backdrop-blur-md border-b border-neutral-800 ">
+<header
+    class="sticky top-0 z-30 flex items-center justify-between h-16 px-6 bg-neutral-900 backdrop-blur-md border-b border-neutral-800 ">
 
     {{-- Left: Toggle & Title --}}
     <div class="flex items-center gap-4">
@@ -31,20 +32,20 @@
 
             {{-- Dropdown Menu --}}
             <div x-show="open" x-transition.origin.top.right
-                class="absolute right-0 w-48 mt-2 origin-top-right bg-white border border-neutral-100 rounded-xl shadow-xl py-1 z-50 ring-1 ring-black ring-opacity-5"
+                class="absolute right-0 w-48 mt-2 origin-top-right bg-neutral-900 border border-neutral-100 rounded-xl shadow-sm shadow-white py-1 z-50 ring-1 ring-black ring-opacity-5"
                 x-cloak>
                 <div class="px-4 py-3 border-b border-neutral-100">
-                    <p class="text-sm font-medium text-neutral-900">{{ Auth::user()->name }}</p>
+                    <p class="text-sm font-medium text-neutral-100">{{ Auth::user()->name }}</p>
                     <p class="text-xs text-neutral-500 truncate">{{ Auth::user()->email }}</p>
                 </div>
 
                 <a href="{{ route('onboarding') }}"
-                    class="flex items-center gap-2 px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-50">
+                    class="flex items-center gap-2 px-4 py-2 text-sm text-neutral-100 hover:bg-neutral-50/20">
                     <i data-lucide="home" class="w-4 h-4"></i> Home
                 </a>
 
                 <a href="{{ route('profile.index') }}"
-                    class="flex items-center gap-2 px-4 py-2 text-sm text-neutral-700 hover:bg-neutral-50">
+                    class="flex items-center gap-2 px-4 py-2 text-sm text-neutral-100 hover:bg-neutral-50/20">
                     <i data-lucide="user" class="w-4 h-4"></i> Profile
                 </a>
 
@@ -54,7 +55,7 @@
                     @method('POST')
 
                     <button type="submit"
-                        class="flex items-center w-full gap-2 px-4 py-2 text-sm text-red-600 hover:bg-red-50">
+                        class="flex items-center w-full gap-2 px-4 py-2 text-sm text-red-600 hover:bg-neutral-50/20">
                         <i data-lucide="log-out" class="w-4 h-4"></i> Sign out
                     </button>
                 </form>
